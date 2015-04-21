@@ -1,0 +1,42 @@
+/**
+ * Copyright (C) 2015 Deven Phillips (dphillips@zanclus.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.codepalousa.restlet.raml.types;
+
+import org.meanbean.test.BeanTester;
+import org.meanbean.test.Configuration;
+import org.meanbean.test.ConfigurationBuilder;
+import org.meanbean.test.EqualsMethodTester;
+import org.meanbean.test.HashCodeMethodTester;
+
+/**
+ *
+ * @author <a href="">Deven Phillips</a>
+ */
+public class GenericBeanTester {
+
+    protected BeanTester tester;
+    protected EqualsMethodTester eqTester;
+    protected HashCodeMethodTester hashTester;
+    protected Configuration config;
+
+    {
+        config = new ConfigurationBuilder().iterations(20).build();
+        tester = new BeanTester();
+        tester.setIterations(20);
+        eqTester = new EqualsMethodTester();
+        hashTester = new HashCodeMethodTester();
+    }
+}
