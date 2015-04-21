@@ -15,8 +15,6 @@
  */
 package com.codepalousa.restlet.raml;
 
-import com.codepalousa.restlet.raml.api.ToDoResourceTest;
-import com.codepalousa.restlet.raml.api.ToDosResourceTest;
 import com.codepalousa.restlet.raml.data.ToDoDAOTest;
 import com.codepalousa.restlet.raml.types.ToDoTest;
 import org.apache.deltaspike.testcontrol.api.junit.CdiTestSuiteRunner;
@@ -30,9 +28,6 @@ import org.junit.runners.Suite;
 @RunWith(CdiTestSuiteRunner.class)
 @Suite.SuiteClasses({
   ToDoDAOTest.class, 
-  ToDoResourceTest.class, 
-  ToDosResourceTest.class, 
-  RestletRamlApplicationTest.class, 
   ToDoTest.class, 
   CDIProducerTest.class
 })
