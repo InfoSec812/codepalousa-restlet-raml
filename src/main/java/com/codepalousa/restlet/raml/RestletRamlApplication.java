@@ -48,7 +48,7 @@ public class RestletRamlApplication extends RamlApplication {
 
     /**
      * Wraps a {@link Finder} returned by {@link #createFinder(Class)} to do
-     * member injection using the passed in {@link MembersInjector}.
+     * field injection using {@link BeanProvider#injectFields(java.lang.Object)}.
      * 
      * @param finder
      *            The finder.
