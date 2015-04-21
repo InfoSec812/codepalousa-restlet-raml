@@ -18,19 +18,21 @@ package com.codepalousa.restlet.raml.api;
 import com.codepalousa.restlet.raml.data.ToDoDAO;
 import com.codepalousa.restlet.raml.types.ToDo;
 import java.io.Serializable;
+import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import org.restlet.data.Status;
-import org.restlet.ext.guice.SelfInjectingServerResource;
 import org.restlet.resource.Delete;
 import org.restlet.resource.Get;
 import org.restlet.resource.Put;
 import org.restlet.resource.ResourceException;
+import org.restlet.resource.ServerResource;
 
 /**
  *
  * @author <a href="https://github.com/InfoSec812">Deven Phillips</a>
  */
-public class ToDoResource extends SelfInjectingServerResource implements Serializable {
+@Dependent
+public class ToDoResource extends ServerResource implements Serializable {
   Long id;
   
   @Inject

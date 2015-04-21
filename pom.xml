@@ -47,6 +47,8 @@
     <hibernate.version>4.3.8.Final</hibernate.version>
     <restlet.version>2.3.1</restlet.version>
     <junit.version>4.12</junit.version>
+    <slf4j.version>1.7.12</slf4j.version>
+    <log4j2.version>2.1</log4j2.version>
     <test>com.codepalousa.restlet.raml.CdiSuiteLevelTest</test>
   </properties>
   <dependencyManagement>
@@ -78,6 +80,20 @@
       <groupId>org.restlet.jse</groupId>
       <artifactId>org.restlet.ext.raml</artifactId>
       <version>${restlet.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>log4j</groupId>
+          <artifactId>log4j</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-log4j12</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>joda-time</groupId>
+          <artifactId>joda-time</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>org.restlet.jse</groupId>
@@ -113,7 +129,7 @@
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
-      <version>1.7.10</version>
+      <version>${slf4j.version}</version>
     </dependency>
     <dependency>
       <groupId>org.jboss.weld.se</groupId>
@@ -163,7 +179,7 @@
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
       <artifactId>log4j-slf4j-impl</artifactId>
-      <version>2.1</version>
+      <version>${log4j2.version}</version>
       <scope>runtime</scope>
     </dependency>
     <dependency>
@@ -172,6 +188,30 @@
       <version>1.0.1b</version>
       <scope>runtime</scope>
       <type>pom</type>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>jul-to-slf4j</artifactId>
+      <version>${slf4j.version}</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>log4j-over-slf4j</artifactId>
+      <version>${slf4j.version}</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-core</artifactId>
+      <version>${log4j2.version}</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.restlet.jse</groupId>
+      <artifactId>org.restlet.ext.jackson</artifactId>
+      <version>${restlet.version}</version>
+      <scope>runtime</scope>
     </dependency>
         
     <dependency>
@@ -222,6 +262,8 @@
           </properties>
           <excludes>
             <exclude>**/lombok.config</exclude>
+            <exclude>src/main/resources/*.yaml</exclude>
+            <exclude>src/main/resources/*.properties</exclude>
           </excludes>
         </configuration>
         <executions>

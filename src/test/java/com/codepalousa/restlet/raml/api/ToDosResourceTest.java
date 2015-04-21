@@ -15,18 +15,22 @@
  */
 package com.codepalousa.restlet.raml.api;
 
-import static org.mockito.Mockito.*;
-import static org.mockito.Matchers.*;
-import static org.junit.Assert.*;
-
 import com.codepalousa.restlet.raml.data.ToDoDAO;
 import com.codepalousa.restlet.raml.types.ToDo;
 import java.util.ArrayList;
 import java.util.List;
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 import org.junit.Before;
+import org.junit.Test;
 import org.mockito.InjectMocks;
+import static org.mockito.Matchers.any;
 import org.mockito.Mock;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.reset;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 import org.mockito.MockitoAnnotations;
 import org.restlet.resource.ResourceException;
 

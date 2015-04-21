@@ -24,6 +24,7 @@ import org.restlet.Request;
 import org.restlet.Response;
 import org.restlet.Restlet;
 import org.restlet.ext.raml.RamlApplication;
+import org.restlet.ext.raml.RamlSpecificationRestlet;
 import org.restlet.resource.Finder;
 import org.restlet.resource.ServerResource;
 import org.restlet.routing.Router;
@@ -41,6 +42,15 @@ public class RestletRamlApplication extends RamlApplication {
     
     router.attach("/todo", ToDosResource.class);
     router.attach("/todo/{id}", ToDoResource.class);
+    
+    RamlSpecificationRestlet raml = getRamlSpecificationRestlet(getContext());
+    raml.setApiVersion("1");
+    raml.setAuthor("Deven Phillips");
+    raml.setDescription("ReST API For a ToDo list");
+    raml.setName("todo");
+    raml.setOwner("Deven Phillips <dphillips@zanclus.com>");
+    raml.setBasePath("http://localhost:8180/rest/v1");
+    raml.attach(router);
     
     return router;
   }

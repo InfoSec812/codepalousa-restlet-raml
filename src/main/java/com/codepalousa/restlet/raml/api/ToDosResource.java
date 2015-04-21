@@ -19,29 +19,31 @@ import com.codepalousa.restlet.raml.data.ToDoDAO;
 import com.codepalousa.restlet.raml.types.ToDo;
 import java.io.Serializable;
 import java.util.List;
+import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import org.restlet.data.Status;
-import org.restlet.ext.guice.SelfInjectingServerResource;
 import org.restlet.resource.Get;
-import org.restlet.resource.Put;
+import org.restlet.resource.Post;
 import org.restlet.resource.ResourceException;
+import org.restlet.resource.ServerResource;
 
 /**
  *
  * @author <a href="https://github.com/InfoSec812">Deven Phillips</a>
  */
-public class ToDosResource extends SelfInjectingServerResource implements Serializable {
+@Dependent
+public class ToDosResource extends ServerResource implements Serializable {
   
   @Inject
   private ToDoDAO dao;
 
-  @Get("json|xml")
+  @Get("json|xml|csv")
   public List<ToDo> getAllToDo() {
     List<ToDo> todos = dao.getAllToDos();
     return todos;
   }
   
-  @Put("json|xml")
+  @Post("json|xml|csv")
   public ToDo addToDo(ToDo item) throws ResourceException {
     ToDo todo = dao.addToDo(item);
     if (todo==null || todo.id()==null) {

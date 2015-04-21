@@ -33,8 +33,7 @@ public class Main {
     cdiContainer.boot();
 
     // Starting the all contexts
-    ContextControl contextControl = cdiContainer.getContextControl();
-    contextControl.startContexts();
+    cdiContainer.getContextControl().startContexts();
     // You can use CDI here
 
     Component component = new Component();

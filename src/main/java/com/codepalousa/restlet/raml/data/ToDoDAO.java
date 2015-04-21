@@ -18,7 +18,7 @@ package com.codepalousa.restlet.raml.data;
 import com.codepalousa.restlet.raml.types.ToDo;
 import java.io.Serializable;
 import java.util.List;
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
@@ -28,8 +28,8 @@ import lombok.extern.slf4j.Slf4j;
  *
  * @author <a href="https://github.com/InfoSec812">Deven Phillips</a>
  */
-@SessionScoped
 @Slf4j
+@Dependent
 public class ToDoDAO implements Serializable {
 
     @Inject
@@ -62,7 +62,6 @@ public class ToDoDAO implements Serializable {
     public ToDo addToDo(ToDo item) {
         try {
             ToDo retVal = em.merge(item);
-            em.flush();
             return retVal;
         } catch (Exception e) {
             LOG.error("Error getting ToDo list", e);
@@ -74,7 +73,6 @@ public class ToDoDAO implements Serializable {
     public ToDo updateToDo(ToDo item) {
         try {
             ToDo retVal = em.merge(item);
-            em.flush();
             return retVal;
         } catch (Exception e) {
             LOG.error("Error getting ToDo list", e);
