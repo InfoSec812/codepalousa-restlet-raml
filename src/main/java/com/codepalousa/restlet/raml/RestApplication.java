@@ -15,22 +15,23 @@
  */
 package com.codepalousa.restlet.raml;
 
-import com.codepalousa.restlet.raml.data.ToDoDAOTest;
-import com.codepalousa.restlet.raml.types.ToDoTest;
-import org.apache.deltaspike.testcontrol.api.junit.CdiTestSuiteRunner;
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import java.util.Set;
+import javax.ws.rs.Path;
+import javax.ws.rs.core.Application;
+import org.reflections.Reflections;
 
 /**
  *
  * @author <a href="https://github.com/InfoSec812">Deven Phillips</a>
  */
-@RunWith(CdiTestSuiteRunner.class)
-@Suite.SuiteClasses({
-  ToDoDAOTest.class, 
-  ToDoTest.class, 
-  CDIProducerTest.class
-})
-public class CdiSuiteLevelTest {
+public class RestApplication extends Application {
 
+  @Override
+  public Set<Class<?>> getClasses() {
+        // Use the reflections library to scan the current package tree for
+    // classes annotated with javax.ws.rs.Path and add them to the JAX-RS
+    // application
+    Reflections reflections = new Reflections(this.getClass().getPackage().getName());
+    return reflections.getTypesAnnotatedWith(Path.class);
+  }
 }

@@ -35,8 +35,6 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import lombok.Data;
-import org.hibernate.annotations.GenerationTime;
-import org.hibernate.annotations.GeneratorType;
 
 /**
  *
@@ -52,22 +50,22 @@ public class ToDo implements Serializable {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   @XmlAttribute(name="id", required = false)
-  @JsonProperty
+  @JsonProperty("id")
   @JsonPropertyDescription("Unique ID")
   private Long id;
 
   @XmlElement(name = "title", required = true, nillable = false)
-  @JsonProperty
+  @JsonProperty("title")
   @JsonPropertyDescription("Short title of the ToDo item")
   private String title;
   
   @XmlElement(name = "description", nillable = true)
-  @JsonProperty
+  @JsonProperty("description")
   @JsonPropertyDescription("Long description of the ToDo item")
   private String description;
   
   @XmlElement(name = "created", required = true, nillable = false)
-  @JsonProperty
+  @JsonProperty("created")
   @JsonPropertyDescription("The date/time when the ToDo item was created")
   @JsonSerialize(contentConverter = DateTimeSerializeConverter.class)
   @JsonDeserialize(contentConverter = DateTimeDeserializeConverter.class)
@@ -75,7 +73,7 @@ public class ToDo implements Serializable {
   private Date created = new Date();
   
   @XmlElement(name = "due", nillable = true)
-  @JsonProperty
+  @JsonProperty("due")
   @JsonPropertyDescription("The date/time when the ToDo item is due to be completed")
   @JsonSerialize(contentConverter = DateTimeSerializeConverter.class)
   @JsonDeserialize(contentConverter = DateTimeDeserializeConverter.class)
