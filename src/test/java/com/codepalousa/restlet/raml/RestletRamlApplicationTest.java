@@ -43,7 +43,8 @@ public class RestletRamlApplicationTest {
   public void testCreateInboundRoot() {
     Restlet router = app.createInboundRoot();
     assertTrue("Returned object MUST be instance of Router", Router.class.isInstance(router));
-    assertTrue("Router MUST have 2 mapped endpoints", ((Router)router).getRoutes().size()==2);
+    int endpointCount = ((Router)router).getRoutes().size();
+    assertTrue(String.format("Router MUST have 3 mapped endpoints but actually has %d endpoints", endpointCount), endpointCount==3);
   }
   
 }

@@ -25,7 +25,7 @@ import javax.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- *
+ * A class which contains all of the CRUD methods for database operations.
  * @author <a href="https://github.com/InfoSec812">Deven Phillips</a>
  */
 @Slf4j
@@ -38,6 +38,10 @@ public class ToDoDAO implements Serializable {
     public ToDoDAO() {
     }
 
+    /**
+     * Get all ToDo entities from the database
+     * @return 
+     */
     @Transactional
     public List<ToDo> getAllToDos() {
         try {
@@ -48,44 +52,64 @@ public class ToDoDAO implements Serializable {
         }
     }
 
+    /**
+     * Get a single ToDo entity whose primary key matches the provided ID
+     * @param id The unique primary key value
+     * @return An instance of {@link ToDo} which corresponds to the ID or NULL if it is not found.
+     */
     @Transactional
     public ToDo getToDo(Long id) {
         try {
             return em.find(ToDo.class, id);
         } catch (Exception e) {
-            LOG.error("Error getting ToDo list", e);
+            LOG.error("Error getting ToDo", e);
             return null;
         }
     }
 
+    /**
+     * Add a new ToDo entity to the persistence context.
+     * @param item The ToDo item to be stored.
+     * @return The persisted ToDo entity with the ID field populated if needed or NULL if the insert failed.
+     */
     @Transactional
     public ToDo addToDo(ToDo item) {
         try {
             ToDo retVal = em.merge(item);
             return retVal;
         } catch (Exception e) {
-            LOG.error("Error getting ToDo list", e);
+            LOG.error("Error adding ToDo", e);
             return null;
         }
     }
 
+    /**
+     * Modify an existing {@link ToDo} entity
+     * @param item The {@link ToDo} entity with the new values to be updated.
+     * @return The persisted {@link ToDo} instance
+     */
     @Transactional
     public ToDo updateToDo(ToDo item) {
         try {
             ToDo retVal = em.merge(item);
             return retVal;
         } catch (Exception e) {
-            LOG.error("Error getting ToDo list", e);
+            LOG.error("Error updating ToDo", e);
             return null;
         }
     }
 
+    /**
+     * Delete the {@link ToDo} entity which corresponds to the given ID
+     * @param id The unique ID of the entity to be deleted
+     * @return True if the entity was deleted, otherwise returns false.
+     */
     @Transactional
     public boolean deleteToDo(Long id) {
         try {
             em.remove(em.find(ToDo.class, id));
         } catch (Exception e) {
-            LOG.error("Error getting ToDo list", e);
+            LOG.error("Error removing ToDo item", e);
             return false;
         }
         return true;

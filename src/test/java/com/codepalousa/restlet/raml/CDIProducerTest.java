@@ -17,7 +17,6 @@ package com.codepalousa.restlet.raml;
 
 import javax.persistence.EntityManager;
 import static org.mockito.Mockito.*;
-import static org.mockito.Matchers.*;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnitUtil;

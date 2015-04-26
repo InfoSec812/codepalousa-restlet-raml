@@ -28,16 +28,23 @@ import org.restlet.resource.ResourceException;
 import org.restlet.resource.ServerResource;
 
 /**
- *
+ * Expose ID specific {@link ToDo} resources as ReST endpoints
  * @author <a href="https://github.com/InfoSec812">Deven Phillips</a>
  */
 @Dependent
 public class ToDoResource extends ServerResource implements Serializable {
+  /**
+   * The ID specified in the request URI's {id} parameter
+   */
   Long id;
   
   @Inject
   private ToDoDAO dao;
 
+  /**
+   * When a new request is received, parse the path parameter for the ID and store it in a local property
+   * @throws ResourceException 
+   */
   @Override
   protected void doInit() throws ResourceException {
     try {
@@ -47,28 +54,45 @@ public class ToDoResource extends ServerResource implements Serializable {
     }
   }
 
+  /**
+   * Return the {@link ToDo} entity identified by the ID in the request URL
+   * @return An instance of {@link ToDo} containing the requested entity
+   */
   @Get("json|xml")
   public ToDo getToDo() {
     ToDo todo = dao.getToDo(id);
     if (todo==null) {
       throw new ResourceException(Status.CLIENT_ERROR_NOT_FOUND);
     }
+    this.setStatus(Status.SUCCESS_OK);
     return todo;
   }
   
+
+  /**
+   * Update the {@link ToDo} entity identified by the ID in the request URL
+   * @param item The {@link ToDo} object containing the updated information
+   * @return An instance of {@link ToDo} containing the updated entity
+   */
   @Put("json|xml")
   public ToDo updateToDo(ToDo item) {
     ToDo todo = dao.updateToDo(item);
     if (todo==null) {
        throw new ResourceException(Status.SERVER_ERROR_INTERNAL, "Failed to update ToDo entity.");
     }
+    this.setStatus(Status.SUCCESS_ACCEPTED);
     return todo;
   }
   
+
+  /**
+   * Delete the {@link ToDo} entity identified by the ID in the request URL
+   */
   @Delete
   public void deleteToDo() {
     if (!dao.deleteToDo(id)) {
       throw new ResourceException(Status.SERVER_ERROR_INTERNAL);
     }
+    this.setStatus(Status.SUCCESS_NO_CONTENT);
   }
 }

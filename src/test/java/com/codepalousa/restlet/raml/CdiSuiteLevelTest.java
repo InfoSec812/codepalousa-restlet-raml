@@ -34,6 +34,8 @@ import org.junit.runners.Suite;
   ToDosResourceTest.class, 
   RestletRamlApplicationTest.class, 
   ToDoTest.class, 
+  DateTimeDeserializeConverterTest.class,
+  DateTimeSerializeConverterTest.class,
   CDIProducerTest.class
 })
 public class CdiSuiteLevelTest {

@@ -28,7 +28,7 @@ import org.restlet.resource.ResourceException;
 import org.restlet.resource.ServerResource;
 
 /**
- *
+ * Expose top-level operations for {@link ToDo} entities
  * @author <a href="https://github.com/InfoSec812">Deven Phillips</a>
  */
 @Dependent
@@ -37,18 +37,30 @@ public class ToDosResource extends ServerResource implements Serializable {
   @Inject
   private ToDoDAO dao;
 
+  /**
+   * Return a list of all {@link ToDo} entities
+   * @return 
+   */
   @Get("json|xml|csv")
   public List<ToDo> getAllToDo() {
     List<ToDo> todos = dao.getAllToDos();
+    this.setStatus(Status.SUCCESS_OK);
     return todos;
   }
   
+  /**
+   * Add a new {@link ToDo} entity
+   * @param item The {@link ToDo} item to be added.
+   * @return The {@link ToDo} instance with the ID field populated if needed.
+   * @throws ResourceException If there is a server-side error
+   */
   @Post("json|xml|csv")
   public ToDo addToDo(ToDo item) throws ResourceException {
     ToDo todo = dao.addToDo(item);
     if (todo==null || todo.id()==null) {
       throw new ResourceException(Status.SERVER_ERROR_INTERNAL, "Failed to persist the ToDo entity");
     }
+    this.setStatus(Status.SUCCESS_ACCEPTED);
     return todo;
   }
 }
