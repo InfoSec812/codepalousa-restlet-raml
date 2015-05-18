@@ -51,7 +51,7 @@
     <log4j2.version>2.1</log4j2.version>
     <test>com.codepalousa.restlet.raml.CdiSuiteLevelTest</test>
   </properties>
-<!--  <repositories>
+  <repositories>
     <repository>
       <id>mulesoft</id>
       <url>https://repository-master.mulesoft.org/releases/</url>
@@ -64,7 +64,7 @@
       <id>restlet</id>
       <url>http://maven.restlet.com/</url>
     </repository>
-  </repositories>-->
+  </repositories>
   <dependencyManagement>
     <dependencies>
       <dependency>
@@ -323,6 +323,9 @@
             </goals>
           </execution>
         </executions>
+        <configuration>
+          <failOnError>false</failOnError>
+        </configuration>
       </plugin>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
