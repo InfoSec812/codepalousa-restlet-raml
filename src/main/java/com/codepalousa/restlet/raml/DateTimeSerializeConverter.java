@@ -25,7 +25,7 @@ import java.util.Date;
 
 /**
  *
- * @author <a href="">Deven Phillips</a>
+ * @author <a href="https://github.com/InfoSec812">Deven Phillips</a>
  */
 public class DateTimeSerializeConverter implements Converter<Date, String> {
 

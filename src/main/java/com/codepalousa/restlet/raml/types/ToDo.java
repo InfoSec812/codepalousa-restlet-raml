@@ -24,6 +24,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -70,7 +71,8 @@ public class ToDo implements Serializable {
   @JsonSerialize(contentConverter = DateTimeSerializeConverter.class)
   @JsonDeserialize(contentConverter = DateTimeDeserializeConverter.class)
   @Temporal(TemporalType.TIMESTAMP)
-  private Date created = new Date();
+  @Column(columnDefinition = "TIMESTAMP NOT NULL DEFAULT now()")
+  private Date created;
   
   @XmlElement(name = "due", nillable = true)
   @JsonProperty("due")

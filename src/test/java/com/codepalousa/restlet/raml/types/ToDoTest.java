@@ -28,5 +28,7 @@ public class ToDoTest extends GenericBeanTester {
   @Test
   public void testBean() {
     tester.testBean(ToDo.class, config);
+    eqTester.testEqualsMethod(ToDo.class);
+    hashTester.testHashCodeMethod(ToDo.class);
   }
 }
