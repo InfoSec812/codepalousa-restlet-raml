@@ -1,6 +1,8 @@
 Restlet Demo Application With RAML Documentation
 ================================================
 
+[![Build Status](https://semaphoreci.com/api/v1/projects/067fb9df-d7d0-4651-b933-de467c54317a/427209/badge.svg)](https://semaphoreci.com/infosec812/codepalousa-restlet-raml)
+
 Overview
 --------
 
